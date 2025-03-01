@@ -12,6 +12,8 @@ import HomePage from "./pages/HomePage";
 import CalculatorPage from "./pages/CalculatorPage";
 import ProductsPage from "./pages/ProductsPage";
 import ContactPage from "./pages/ContactPage";
+import MeasurementPage from "./pages/MeasurementPage";
+import InstallationPage from "./pages/InstallationPage";
 import AdminLogin from "./components/home";
 
 // Защищенный маршрут, который проверяет аутентификацию
@@ -44,6 +46,11 @@ function App() {
             <Route path="/calculator" element={<CalculatorPage />} />
             <Route path="/products" element={<ProductsPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/services/measurement" element={<MeasurementPage />} />
+            <Route
+              path="/services/installation"
+              element={<InstallationPage />}
+            />
 
             {/* Админ маршруты */}
             <Route path="/admin/login" element={<AdminLogin />} />
