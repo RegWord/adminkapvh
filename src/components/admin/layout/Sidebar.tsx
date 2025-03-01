@@ -7,7 +7,6 @@ import {
   Layers,
   Boxes,
   FileText,
-  Settings,
   LogOut,
   ChevronDown,
 } from "lucide-react";
@@ -57,12 +56,12 @@ const Sidebar = ({
   return (
     <div className="w-64 h-full bg-white border-r border-gray-200 flex flex-col">
       <div className="p-6">
-        <h1 className="text-xl font-bold">Admin Panel</h1>
+        <h1 className="text-xl font-bold">Админ панель</h1>
       </div>
 
       <nav className="flex-1 px-2 py-4 space-y-1">
         <NavItem to="/admin/dashboard" icon={LayoutDashboard}>
-          Dashboard
+          Панель управления
         </NavItem>
 
         <div className="py-2">
@@ -74,7 +73,7 @@ const Sidebar = ({
             <CollapsibleTrigger className="flex items-center justify-between w-full px-4 py-3 text-sm font-medium text-gray-600 hover:text-primary hover:bg-gray-100 rounded-md transition-colors">
               <div className="flex items-center gap-3">
                 <Package className="h-5 w-5" />
-                <span>Product Management</span>
+                <span>Управление продуктами</span>
               </div>
               <ChevronDown
                 className={cn(
@@ -85,24 +84,20 @@ const Sidebar = ({
             </CollapsibleTrigger>
             <CollapsibleContent className="pl-10 space-y-1 mt-1">
               <NavItem to="/admin/products/windows" icon={Layers}>
-                Windows
+                Окна
               </NavItem>
               <NavItem to="/admin/products/materials" icon={Boxes}>
-                Materials
+                Материалы
               </NavItem>
               <NavItem to="/admin/products/systems" icon={Package}>
-                Systems
+                Системы
               </NavItem>
             </CollapsibleContent>
           </Collapsible>
         </div>
 
         <NavItem to="/admin/applications" icon={FileText}>
-          Applications
-        </NavItem>
-
-        <NavItem to="/admin/settings" icon={Settings}>
-          Settings
+          Заявки
         </NavItem>
       </nav>
 
@@ -112,7 +107,7 @@ const Sidebar = ({
           className="flex items-center gap-3 px-4 py-3 w-full text-sm font-medium text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-md transition-colors"
         >
           <LogOut className="h-5 w-5" />
-          <span>Logout</span>
+          <span>Выход</span>
         </button>
       </div>
     </div>

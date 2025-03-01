@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Layers, Package, Users } from "lucide-react";
+import { ArrowRight, Layers, Package, FileText } from "lucide-react";
 
 import {
   Card,
@@ -21,11 +21,11 @@ interface QuickAccessCardProps {
 }
 
 const QuickAccessCard = ({
-  title = "Product Management",
-  description = "Manage your products, materials, and systems",
+  title = "Управление продуктами",
+  description = "Управление продуктами, материалами и системами",
   icon = <Package className="h-8 w-8 text-primary" />,
   linkTo = "/admin/products",
-  linkText = "Manage Products",
+  linkText = "Управление продуктами",
 }: QuickAccessCardProps) => {
   return (
     <Card className="w-full max-w-[380px] h-[200px] bg-white flex flex-col justify-between transition-all duration-200 hover:shadow-lg">
@@ -50,25 +50,25 @@ const QuickAccessCard = ({
 export const QuickAccessCards = () => {
   const cards = [
     {
-      title: "Windows Management",
-      description: "Create, edit, and manage window products",
+      title: "Управление окнами",
+      description: "Создание, редактирование и управление окнами",
       icon: <Layers className="h-8 w-8 text-primary" />,
       linkTo: "/admin/products/windows",
-      linkText: "Manage Windows",
+      linkText: "Управление окнами",
     },
     {
-      title: "Materials Management",
-      description: "Manage all materials in the system",
+      title: "Управление материалами",
+      description: "Управление всеми материалами в системе",
       icon: <Package className="h-8 w-8 text-primary" />,
       linkTo: "/admin/products/materials",
-      linkText: "Manage Materials",
+      linkText: "Управление материалами",
     },
     {
-      title: "Customer Applications",
-      description: "View and manage customer applications",
-      icon: <Users className="h-8 w-8 text-primary" />,
+      title: "Заявки клиентов",
+      description: "Просмотр и управление заявками клиентов",
+      icon: <FileText className="h-8 w-8 text-primary" />,
       linkTo: "/admin/applications",
-      linkText: "View Applications",
+      linkText: "Просмотр заявок",
     },
   ];
 

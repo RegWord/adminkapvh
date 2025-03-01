@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useProducts } from "../../../hooks/useProducts";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
@@ -118,20 +119,39 @@ const ProductManagement = () => {
     setShowDeleteDialog(true);
   };
 
+  // Используем хук для работы с продуктами
+  const { createProduct, updateProduct, deleteProduct } = useProducts(
+    activeTab as "windows" | "materials" | "systems",
+  );
+
   // Handle form submission
-  const handleFormSubmit = (data: any) => {
-    console.log("Form submitted with data:", data);
-    // In a real implementation, this would update the product in the database
-    setShowForm(false);
-    setEditingProduct(null);
+  const handleFormSubmit = async (data: any) => {
+    try {
+      if (editingProduct) {
+        await updateProduct(activeTab, editingProduct.id, data);
+      } else {
+        await createProduct(activeTab, data);
+      }
+      setShowForm(false);
+      setEditingProduct(null);
+    } catch (err) {
+      console.error("Error saving product:", err);
+      // Здесь можно добавить отображение ошибки пользователю
+    }
   };
 
   // Handle delete confirmation
-  const handleDeleteConfirm = () => {
-    console.log("Deleting product:", productToDelete);
-    // In a real implementation, this would delete the product from the database
-    setShowDeleteDialog(false);
-    setProductToDelete(null);
+  const handleDeleteConfirm = async () => {
+    if (!productToDelete) return;
+
+    try {
+      await deleteProduct(activeTab, productToDelete.id);
+      setShowDeleteDialog(false);
+      setProductToDelete(null);
+    } catch (err) {
+      console.error("Error deleting product:", err);
+      // Здесь можно добавить отображение ошибки пользователю
+    }
   };
 
   // Get the appropriate product type based on active tab
