@@ -1,12 +1,18 @@
 import { Suspense } from "react";
 import { useRoutes, Routes, Route, Navigate } from "react-router-dom";
-import Home from "./components/home";
 import routes from "tempo-routes";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import AdminLayout from "./components/admin/layout/AdminLayout";
 import DashboardOverview from "./components/admin/dashboard/DashboardOverview";
 import ProductManagement from "./components/admin/products/ProductManagement";
 import ApplicationsList from "./components/admin/applications/ApplicationsList";
+
+// Импорт страниц сайта
+import HomePage from "./pages/HomePage";
+import CalculatorPage from "./pages/CalculatorPage";
+import ProductsPage from "./pages/ProductsPage";
+import ContactPage from "./pages/ContactPage";
+import AdminLogin from "./components/home";
 
 // Защищенный маршрут, который проверяет аутентификацию
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
@@ -21,7 +27,7 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   }
 
   if (!isAuthenticated) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/admin/login" replace />;
   }
 
   return <>{children}</>;
@@ -33,9 +39,14 @@ function App() {
       <Suspense fallback={<p>Loading...</p>}>
         <>
           <Routes>
-            <Route path="/" element={<Home />} />
+            {/* Публичные маршруты сайта */}
+            <Route path="/" element={<HomePage />} />
+            <Route path="/calculator" element={<CalculatorPage />} />
+            <Route path="/products" element={<ProductsPage />} />
+            <Route path="/contact" element={<ContactPage />} />
 
             {/* Админ маршруты */}
+            <Route path="/admin/login" element={<AdminLogin />} />
             <Route
               path="/admin"
               element={

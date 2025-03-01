@@ -3,9 +3,9 @@ import { Navigate } from "react-router-dom";
 import LoginForm from "./admin/LoginForm";
 import { useAuth } from "../contexts/AuthContext";
 
-interface HomeProps {}
+interface AdminLoginProps {}
 
-const Home = ({}: HomeProps) => {
+const AdminLogin = ({}: AdminLoginProps) => {
   const { isAuthenticated, isLoading, error, login } = useAuth();
 
   // If user is already authenticated, redirect to dashboard
@@ -41,4 +41,4 @@ const Home = ({}: HomeProps) => {
   );
 };
 
-export default Home;
+export default AdminLogin;

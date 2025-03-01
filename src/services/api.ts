@@ -196,3 +196,16 @@ export const applicationsService = {
     });
   },
 };
+
+// Сервис для получения статистики
+export const statisticsService = {
+  async getDashboardStats() {
+    // Заглушка для статистики, так как нет соответствующего API
+    return Promise.resolve({
+      totalUsers: 0,
+      totalRevenue: 0,
+      newOrders: 0,
+      activeProducts: 24,
+    });
+  },
+};
