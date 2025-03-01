@@ -2,37 +2,42 @@ import React, { ReactNode } from "react";
 import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
+import { useAuth } from "../../../contexts/AuthContext";
 
 interface AdminLayoutProps {
   children?: ReactNode;
-  user?: {
-    name: string;
-    email: string;
-    avatarUrl?: string;
-  };
-  onLogout?: () => void;
 }
 
-const AdminLayout = ({
-  children,
-  user = {
-    name: "Admin User",
-    email: "admin@example.com",
-    avatarUrl: "",
-  },
-  onLogout = () => console.log("Logout clicked"),
-}: AdminLayoutProps) => {
+const AdminLayout = ({ children }: AdminLayoutProps) => {
+  const { user, logout } = useAuth();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } catch (err) {
+      console.error("Logout failed:", err);
+    }
+  };
+
   return (
     <div className="flex h-screen w-full bg-gray-50">
       {/* Sidebar */}
       <div className="h-full">
-        <Sidebar onLogout={onLogout} />
+        <Sidebar onLogout={handleLogout} />
       </div>
 
       {/* Main Content */}
       <div className="flex flex-col flex-1 overflow-hidden">
         {/* Header */}
-        <Header user={user} onLogout={onLogout} notifications={3} />
+        <Header
+          user={{
+            name: user?.name || "Admin User",
+            email: user?.email || "admin@example.com",
+            avatarUrl: user?.avatarUrl || "",
+          }}
+          onLogout={handleLogout}
+          notifications={3}
+        />
 
         {/* Content Area */}
         <main className="flex-1 overflow-auto">{children || <Outlet />}</main>
