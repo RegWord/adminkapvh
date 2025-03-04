@@ -48,11 +48,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           asChild
           variant="ghost"
           className="p-0 hover:bg-transparent text-primary"
-        >
-          <Link to={link} className="flex items-center">
-            Подробнее <ArrowRight className="ml-2 h-4 w-4" />
-          </Link>
-        </Button>
+        ></Button>
       </div>
     </div>
   );

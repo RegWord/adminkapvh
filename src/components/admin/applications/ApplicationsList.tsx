@@ -142,13 +142,14 @@ const ApplicationsList = ({
                     </div>
                   </TableCell>
                 </TableRow>
-              ) : applications.length === 0 ? (
+              ) : !applications || applications.length === 0 ? (
                 <TableRow>
                   <TableCell colSpan={4} className="text-center py-10">
                     <p className="text-gray-500">Заявки не найдены</p>
                   </TableCell>
                 </TableRow>
               ) : (
+                Array.isArray(applications) &&
                 applications.map((application) => (
                   <TableRow key={application.id}>
                     <TableCell className="font-medium">

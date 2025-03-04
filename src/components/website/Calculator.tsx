@@ -104,21 +104,21 @@ const Calculator = () => {
                   <Button
                     variant={windowType === "single" ? "default" : "outline"}
                     onClick={() => setWindowType("single")}
-                    className="w-full"
+                    className="w-full p-4 text-[15px]"
                   >
                     Одностворчатое
                   </Button>
                   <Button
                     variant={windowType === "double" ? "default" : "outline"}
                     onClick={() => setWindowType("double")}
-                    className="w-full"
+                    className="w-full p-4 text-[15px]"
                   >
                     Двустворчатое
                   </Button>
                   <Button
                     variant={windowType === "triple" ? "default" : "outline"}
                     onClick={() => setWindowType("triple")}
-                    className="w-full"
+                    className="w-full p-4 text-[15px]"
                   >
                     Трехстворчатое
                   </Button>

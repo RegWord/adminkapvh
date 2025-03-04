@@ -187,7 +187,12 @@ const ProductManagement = () => {
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Product Management</h1>
         <Button onClick={() => setShowForm(true)}>
-          <Plus className="mr-2 h-4 w-4" /> Add New Product
+          <Plus className="mr-2 h-4 w-4" /> Add New{" "}
+          {activeTab === "windows"
+            ? "Window"
+            : activeTab === "materials"
+              ? "Material"
+              : "System"}
         </Button>
       </div>
 
