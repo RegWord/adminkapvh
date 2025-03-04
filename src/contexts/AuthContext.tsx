@@ -26,19 +26,19 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export function useAuth() {
+export const useAuth = () => {
   const context = useContext(AuthContext);
   if (context === undefined) {
     throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
-}
+};
 
 interface AuthProviderProps {
   children: ReactNode;
 }
 
-export function AuthProvider({ children }: AuthProviderProps) {
+export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -53,14 +53,31 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
         // Временное решение - просто проверяем наличие токена
         if (authService.isAuthenticated()) {
-          // Здесь должен быть запрос к API для получения данных пользователя
-          // Для примера используем заглушку
-          setUser({
-            id: "1",
-            name: "Admin User",
-            email: "admin@example.com",
-            role: "admin",
-          });
+          try {
+            // Здесь должен быть запрос к API для получения данных пользователя
+            // Для примера используем заглушку
+            setUser({
+              id: "1",
+              name: "Admin User",
+              email: "admin@example.com",
+              role: "admin",
+            });
+          } catch (apiError) {
+            console.warn(
+              "Failed to fetch user data, but token exists",
+              apiError,
+            );
+            // Если API недоступно, но токен есть, все равно считаем пользователя авторизованным
+            setUser({
+              id: "1",
+              name: "Admin User",
+              email: "admin@example.com",
+              role: "admin",
+            });
+          }
+        } else {
+          // Если нет токена, пользователь не авторизован
+          setUser(null);
         }
       } catch (err) {
         console.error("Authentication check failed:", err);
@@ -121,4 +138,4 @@ export function AuthProvider({ children }: AuthProviderProps) {
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
-}
+};

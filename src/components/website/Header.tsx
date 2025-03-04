@@ -15,10 +15,13 @@ const Header = () => {
 
         <nav className="hidden md:flex items-center space-x-6">
           <div className="relative group">
-            <button className="flex items-center text-gray-700 hover:text-primary">
-              Продукция <span className="ml-1">▼</span>
-            </button>
-            <div className="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md overflow-hidden z-10 hidden group-hover:block">
+            <Link
+              to="/products"
+              className="flex items-center text-gray-700 hover:text-primary"
+            >
+              Продукция
+            </Link>
+            <div className="hidden">
               <Link
                 to="/products/windows"
                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
@@ -44,7 +47,11 @@ const Header = () => {
             <button className="flex items-center text-gray-700 hover:text-primary">
               Услуги <span className="ml-1">▼</span>
             </button>
-            <div className="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md overflow-hidden z-10 hidden group-hover:block">
+            <div
+              className="absolute left-0 w-48 bg-white shadow-lg rounded-md overflow-hidden z-10 
+      opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200 delay-150 
+      pointer-events-none group-hover:pointer-events-auto"
+            >
               <Link
                 to="/services/calculator"
                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
@@ -66,7 +73,10 @@ const Header = () => {
             </div>
           </div>
 
-          <Link to="/calculator" className="text-gray-700 hover:text-primary">
+          <Link
+            to="/services/calculator"
+            className="text-gray-700 hover:text-primary"
+          >
             Калькулятор
           </Link>
         </nav>

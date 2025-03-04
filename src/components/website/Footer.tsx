@@ -114,13 +114,6 @@ const Footer = () => {
                   mashtabss@mail.ru
                 </a>
               </li>
-              <li className="flex items-start">
-                <MapPin className="h-5 w-5 text-primary mr-2 mt-0.5" />
-                <span className="text-sm text-gray-600">
-                  г. Сочи, р-н Хостинский, ул. Дорога на Большой Ахун, 16, кв.
-                  88
-                </span>
-              </li>
             </ul>
           </div>
         </div>

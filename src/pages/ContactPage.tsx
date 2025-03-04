@@ -27,17 +27,6 @@ const ContactPage = () => {
 
                 <div className="space-y-6">
                   <div className="flex items-start">
-                    <MapPin className="h-6 w-6 text-primary mr-3 mt-0.5" />
-                    <div>
-                      <h3 className="font-medium">Адрес</h3>
-                      <p className="text-gray-600 mt-1">
-                        г. Сочи, р-н Хостинский, ул. Дорога на Большой Ахун, 16,
-                        кв. 88
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start">
                     <Phone className="h-6 w-6 text-primary mr-3 mt-0.5" />
                     <div>
                       <h3 className="font-medium">Телефон</h3>

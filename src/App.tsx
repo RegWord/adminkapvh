@@ -35,6 +35,13 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   return <>{children}</>;
 };
 
+// Fallback component for handling unknown routes
+const FallbackHandler = () => {
+  // This component can be used to handle unknown routes
+  // For API-like routes, we can silently handle them
+  return null;
+};
+
 function App() {
   return (
     <AuthProvider>
@@ -43,7 +50,7 @@ function App() {
           <Routes>
             {/* Публичные маршруты сайта */}
             <Route path="/" element={<HomePage />} />
-            <Route path="/calculator" element={<CalculatorPage />} />
+            <Route path="/services/calculator" element={<CalculatorPage />} />
             <Route path="/products" element={<ProductsPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/services/measurement" element={<MeasurementPage />} />
@@ -67,9 +74,21 @@ function App() {
                 element={<Navigate to="/admin/dashboard" replace />}
               />
               <Route path="dashboard" element={<DashboardOverview />} />
-              <Route path="products/*" element={<ProductManagement />} />
+              <Route path="products" element={<ProductManagement />} />
+              <Route path="products/windows" element={<ProductManagement />} />
+              <Route
+                path="products/materials"
+                element={<ProductManagement />}
+              />
+              <Route path="products/systems" element={<ProductManagement />} />
               <Route path="applications" element={<ApplicationsList />} />
             </Route>
+
+            {/* Handle unknown routes like /hybridaction */}
+            <Route path="/hybridaction/*" element={<FallbackHandler />} />
+
+            {/* Catch-all route for any other unknown paths */}
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
           {import.meta.env.VITE_TEMPO === "true" && useRoutes(routes)}
         </>
